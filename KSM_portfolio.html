@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korla Saimouli - Portfolio</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#64ffda',
+          secondary: '#8892b0'
+        },
+        borderRadius: {
+          'none': '0px',
+          'sm': '4px',
+          DEFAULT: '8px',
+          'md': '12px',
+          'lg': '16px',
+          'xl': '20px',
+          '2xl': '24px',
+          '3xl': '32px',
+          'full': '9999px',
+          'button': '8px'
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:root {
+  --dark-navy: #0a192f;
+  --navy: #112240;
+  --light-navy: #233554;
+  --primary: #64ffda;
+  --secondary: #8892b0;
+  --slate: #8892b0;
+  --light-slate: #a8b2d1;
+  --lightest-slate: #ccd6f6;
+  --white: #e6f1ff;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--dark-navy);
+  color: var(--lightest-slate);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Hero Section Styles */
+/* Floating Code Background */
+.background-code {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.code-line {
+  position: absolute;
+  white-space: nowrap;
+  color: var(--primary);
+  font-size: 14px;
+  opacity: 0.1;
+  animation: floatCode 15s linear infinite;
+}
+
+@keyframes floatCode {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(10px);
+    opacity: 0.1;
+  }
+}
+
+/* Container for content */
+.hero-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 40px;
+}
+
+/* Text Content */
+.hero-content {
+  position: relative;
+  z-index: 20;
+  animation: fadeInUp 1s ease-out;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-gradient {
+  animation: gradient 8s ease infinite;
+  background-size: 200% auto;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glow {
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2);
+}
+
+.typing-text::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* 3D Heads */
+.person {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.2), 0 0 25px rgba(100, 255, 218, 0.3), inset 0 0 20px rgba(100, 255, 218, 0.2);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.person:hover {
+  transform: scale(1.1) rotateY(15deg);
+  box-shadow: 0 0 30px rgba(100, 255, 218, 0.6);
+}
+
+.eyes {
+  display: flex;
+  gap: 14px;
+}
+
+.eye {
+  width: 40px;
+  height: 40px;
+  background: var(--white);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.pupil {
+  width: 16px;
+  height: 16px;
+  background: var(--dark-navy);
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.1s ease-out;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+  animation: pulse 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.2; }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+}
+
+/* Portfolio Section Styles */
+.neon-glow {
+  text-shadow: 0 0 5px rgba(100, 255, 218, 0.5), 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.glassmorphism {
+  background: rgba(17, 34, 64, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.progress-bar {
+  height: 2px;
+  background-color: var(--primary);
+  position: fixed;
+  top: 64px;
+  left: 0;
+  z-index: 1000;
+  width: 0%;
+  transition: width 0.2s ease;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.card-flip {
+  perspective: 1000px;
+  height: 350px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card-flip:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: var(--navy);
+  padding: 1.5rem;
+}
+
+.tech-pill {
+  background-color: rgba(100, 255, 218, 0.1);
+  color: var(--primary);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-node {
+  width: 16px;
+  height: 16px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  background-color: rgba(100, 255, 218, 0.3);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 8px;
+  width: 2px;
+  background-color: var(--light-navy);
+  z-index: 1;
+}
+
+.timeline-content {
+  margin-left: 2rem;
+  padding: 1.5rem;
+  background-color: var(--navy);
+  border-radius: 8px;
+  position: relative;
+  margin-bottom: 2rem;
+  border-left: 2px solid var(--primary);
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid var(--navy);
+}
+
+.skill-bar {
+  height: 8px;
+  background-color: var(--light-navy);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.skill-progress {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+.skill-card {
+  background-color: var(--navy);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-neon {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-neon:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+input:focus + label, textarea:focus + label, input:not(:placeholder-shown) + label, textarea:not(:placeholder-shown) + label {
+  transform: translateY(-20px) scale(0.8);
+  color: var(--primary);
+}
+
+input, textarea {
+  background-color: var(--light-navy);
+  border: none;
+  border-radius: 4px;
+  padding: 1rem;
+  color: var(--white);
+  width: 100%;
+}
+
+input:focus, textarea:focus {
+  outline: 1px solid var(--primary);
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: var(--slate);
+  transition: transform 0.3s ease, color 0.3s ease;
+  pointer-events: none;
+}
+
+.cube-container {
+  perspective: 800px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: rotate 15s infinite linear;
+}
+
+.cube-face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--white);
+  background-color: rgba(35, 53, 84, 0.8);
+  border: 2px solid var(--primary);
+  backface-visibility: visible;
+}
+
+.front {
+  transform: translateZ(100px);
+}
+
+.back {
+  transform: rotateY(180deg) translateZ(100px);
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(0) rotateY(0) rotateZ(0);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
+.cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(100, 255, 218, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+  display: none;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--navy);
+  color: var(--primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--light-navy);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 8px;
+  color: var(--white);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+}
+
+.form-label {
+  font-size: 14px;
+  color: var(--primary);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+</style>
+</head>
+<body>
+<div class="cursor-follower"></div>
+<div class="cursor-dot"></div>
+
+<!-- Hero Section -->
+<section id="about" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-dark-navy">
+    <div class="background-code" id="code-bg"></div>
+    <div class="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center h-full">
+      <!-- Text Content (Name and Typing Animation) -->
+      <div class="text-center mb-16 hero-content">
+        <h1 class="text-6xl md:text-8xl font-bold mb-6 hero-name bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#64ffda] to-[#98ffe0] animate-gradient">KORLA SAIMOULI</h1>
+        <div class="flex flex-wrap justify-center gap-4 text-xl md:text-2xl text-secondary relative">
+          <span class="typing-text glow"></span>
+        </div>
+      </div>
+
+      <!-- 3D Interactive Heads -->
+      <div class="flex justify-center items-center gap-8 z-20">
+        <div class="person">
+          <div class="eyes">
+            <div class="eye"><div class="pupil"></div></div>
+            <div class="eye"><div class="pupil"></div></div>
+          </div>
+          <div class="hero-glow"></div>
+        </div>
+        <div class="person">
+          <div class="eyes">
+            <div class="eye"><div class="pupil"></div></div>
+            <div class="eye"><div class="pupil"></div></div>
+          </div>
+          <div class="hero-glow"></div>
+        </div>
+        <div class="person">
+          <div class="eyes">
+            <div class="eye"><div class="pupil"></div></div>
+            <div class="eye"><div class="pupil"></div></div>
+          </div>
+          <div class="hero-glow"></div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <i class="ri-arrow-down-line ri-2x text-primary"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full glassmorphism z-50 transition-all duration-300">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="#" class="text-primary font-['Pacifico'] text-2xl">KS</a>
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="#about" class="nav-link text-lightest-slate hover:text-primary transition-colors">About</a>
+      <a href="#skills" class="nav-link text-lightest-slate hover:text-primary transition-colors">Skills</a>
+      <a href="#projects" class="nav-link text-lightest-slate hover:text-primary transition-colors">Projects</a>
+      <a href="#education" class="nav-link text-lightest-slate hover:text-primary transition-colors">Education</a>
+      <a href="#contact" class="nav-link text-lightest-slate hover:text-primary transition-colors">Contact</a>
+    </div>
+    <div class="md:hidden flex items-center w-8 h-8 justify-center">
+      <button id="menu-toggle" class="text-lightest-slate focus:outline-none">
+        <i class="ri-menu-line ri-lg"></i>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-navy absolute top-full left-0 w-full py-4 px-6 transition-all duration-300">
+    <a href="#about" class="block py-2 text-lightest-slate hover:text-primary transition-colors">About</a>
+    <a href="#skills" class="block py-2 text-lightest-slate hover:text-primary transition-colors">Skills</a>
+    <a href="#projects" class="block py-2 text-lightest-slate hover:text-primary transition-colors">Projects</a>
+    <a href="#education" class="block py-2 text-lightest-slate hover:text-primary transition-colors">Education</a>
+    <a href="#contact" class="block py-2 text-lightest-slate hover:text-primary transition-colors">Contact</a>
+  </div>
+  <div class="progress-bar" id="scroll-progress"></div>
+</nav>
+
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-dark-navy">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-16 neon-glow">Skills & Expertise</h2>
+    <div class="cube-container mb-16">
+      <div class="cube">
+        <div class="cube-face front">Frontend</div>
+        <div class="cube-face back">Backend</div>
+        <div class="cube-face right">AI/ML</div>
+        <div class="cube-face left">Database</div>
+        <div class="cube-face top">DevOps</div>
+        <div class="cube-face bottom">UI/UX</div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-2xl font-semibold mb-6 text-lightest-slate">Technical Skills</h3>
+        <div class="mb-4">
+          <div class="flex justify-between mb-2">
+            <span>Python</span>
+            <span>95%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 95%"></div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="flex justify-between mb-2">
+            <span>JavaScript/React</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 90%"></div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="flex justify-between mb-2">
+            <span>PHP</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="flex justify-between mb-2">
+            <span>Machine Learning</span>
+            <span>80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 80%"></div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="flex justify-between mb-2">
+            <span>SQL/NoSQL</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="flex justify-between mb-2">
+            <span>Docker/Kubernetes</span>
+            <span>75%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 75%"></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-6 text-lightest-slate">Soft Skills</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="skill-card">
+            <div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+              <i class="ri-team-line ri-2x"></i>
+            </div>
+            <h4 class="text-lg font-medium mb-2">Team Leadership</h4>
+            <p class="text-slate">Led cross-functional teams of 5-10 members across multiple projects with efficient delivery.</p>
+          </div>
+          <div class="skill-card">
+            <div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+              <i class="ri-chat-4-line ri-2x"></i>
+            </div>
+            <h4 class="text-lg font-medium mb-2">Communication</h4>
+            <p class="text-slate">Excellent verbal and written communication skills with ability to explain complex concepts.</p>
+          </div>
+          <div class="skill-card">
+            <div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+              <i class="ri-lightbulb-line ri-2x"></i>
+            </div>
+            <h4 class="text-lg font-medium mb-2">Problem Solving</h4>
+            <p class="text-slate">Analytical approach to identifying issues and implementing effective solutions.</p>
+          </div>
+          <div class="skill-card">
+            <div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+              <i class="ri-time-line ri-2x"></i>
+            </div>
+            <h4 class="text-lg font-medium mb-2">Time Management</h4>
+            <p class="text-slate">Efficiently prioritize tasks and manage multiple projects simultaneously.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-navy">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-16 neon-glow">Featured Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Project 1 -->
+      <div class="card-flip">
+        <div class="card-inner">
+          <div class="card-front bg-light-navy">
+            <img src="https://readdy.ai/api/search-image?query=AI%20robot%20companion%20with%20friendly%20face%20interacting%20with%20elderly%20person%2C%20high%20tech%20robot%20with%20emotion%20recognition%20display%2C%20soft%20lighting%2C%20caring%20interaction%2C%20modern%20design%20with%20blue%20accent%20lights&width=600&height=400&seq=3&orientation=landscape" alt="MyChum AI Companion" class="w-full h-1/2 object-cover object-top">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-primary">MyChum: AI Companion Robot</h3>
+              <p class="text-slate mb-4 line-clamp-2">AI-powered companion robot for elderly care with emotion recognition capabilities.</p>
+              <div class="flex flex-wrap mb-4">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">AI</span>
+                <span class="tech-pill">Facial Recognition</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-back">
+            <h3 class="text-xl font-bold mb-4 text-primary">MyChum: AI Companion Robot</h3>
+            <p class="text-slate mb-4">Developed an AI-powered companion robot that uses facial emotion recognition and voice-based sentiment analysis to provide personalized interactions for elderly users.</p>
+            <p class="text-slate mb-4">Features multilingual communication, automated reports, and 24/7 interaction system for improved emotional well-being.</p>
+            <div class="mt-auto flex space-x-4">
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-eye-line mr-2"></i> Live Demo
+              </a>
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-github-line mr-2"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 2 -->
+      <div class="card-flip">
+        <div class="card-inner">
+          <div class="card-front bg-light-navy">
+            <img src="https://readdy.ai/api/search-image?query=geolocation%20tracking%20system%20on%20smartphone%20with%20map%20interface%2C%20location%20pin%20markers%20on%20digital%20map%2C%20professional%20UI%20design%20with%20blue%20theme%2C%20attendance%20tracking%20visualization&width=600&height=400&seq=4&orientation=landscape" alt="Geo-Fenced Attendance System" class="w-full h-1/2 object-cover object-top">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-primary">Geo-Fenced Attendance System</h3>
+              <p class="text-slate mb-4 line-clamp-2">Location-based attendance tracking system with geographic validation.</p>
+              <div class="flex flex-wrap mb-4">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Geolocation</span>
+                <span class="tech-pill">Authentication</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-back">
+            <h3 class="text-xl font-bold mb-4 text-primary">Geo-Fenced Attendance System</h3>
+            <p class="text-slate mb-4">Created a location-based attendance tracking system that validates check-ins within predefined geographic areas using Python.</p>
+            <p class="text-slate mb-4">Integrates secure authentication mechanisms and provides real-time attendance logs to reduce manual tracking and strengthen attendance integrity.</p>
+            <div class="mt-auto flex space-x-4">
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-eye-line mr-2"></i> Live Demo
+              </a>
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-github-line mr-2"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 3 -->
+      <div class="card-flip">
+        <div class="card-inner">
+          <div class="card-front bg-light-navy">
+            <img src="https://readdy.ai/api/search-image?query=document%20comparison%20software%20interface%20showing%20plagiarism%20detection%2C%20text%20highlighting%20between%20documents%2C%20similarity%20visualization%20with%20percentage%20indicators%2C%20professional%20UI%20with%20blue%20theme&width=600&height=400&seq=5&orientation=landscape" alt="Plagiarism Checker" class="w-full h-1/2 object-cover object-top">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-primary">Python Plagiarism Checker</h3>
+              <p class="text-slate mb-4 line-clamp-2">Content comparison tool with accurate similarity detection and intuitive UI.</p>
+              <div class="flex flex-wrap mb-4">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">NLP</span>
+                <span class="tech-pill">UI Design</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-back">
+            <h3 class="text-xl font-bold mb-4 text-primary">Python Plagiarism Checker</h3>
+            <p class="text-slate mb-4">Built a Python-based plagiarism detection tool focused on accurate content comparison with an intuitive user interface design.</p>
+            <p class="text-slate mb-4">Supports quick report generation and highlights duplicated content using advanced similarity scoring algorithms to maintain academic integrity.</p>
+            <div class="mt-auto flex space-x-4">
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-eye-line mr-2"></i> Live Demo
+              </a>
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-github-line mr-2"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 4 -->
+      <div class="card-flip">
+        <div class="card-inner">
+          <div class="card-front bg-light-navy">
+            <img src="https://readdy.ai/api/search-image?query=blood%20bank%20management%20system%20dashboard%20interface%20showing%20blood%20inventory%20levels%2C%20donor%20registration%20form%2C%20request%20management%20panel%2C%20professional%20medical%20interface%20with%20blue%20theme&width=600&height=400&seq=6&orientation=landscape" alt="Blood Bank Management System" class="w-full h-1/2 object-cover object-top">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-primary">Blood Bank Management System</h3>
+              <p class="text-slate mb-4 line-clamp-2">Web-based system for managing donor records, blood inventory, and request fulfillment.</p>
+              <div class="flex flex-wrap mb-4">
+                <span class="tech-pill">PHP</span>
+                <span class="tech-pill">MySQL</span>
+                <span class="tech-pill">Web Development</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-back">
+            <h3 class="text-xl font-bold mb-4 text-primary">Blood Bank Management System</h3>
+            <p class="text-slate mb-4">Developed a web-based Blood Bank Management System using PHP and MySQL to manage donor registration, blood inventory, and request fulfillment.</p>
+            <p class="text-slate mb-4">Includes role-based access, search filters, and donation tracking to streamline operations and support faster emergency response.</p>
+            <div class="mt-auto flex space-x-4">
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-eye-line mr-2"></i> Live Demo
+              </a>
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-github-line mr-2"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 5 -->
+      <div class="card-flip">
+        <div class="card-inner">
+          <div class="card-front bg-light-navy">
+            <img src="https://readdy.ai/api/search-image?query=rail%20pass%20management%20system%20interface%20showing%20pass%20issuance%20panel%2C%20transaction%20tracking%20dashboard%2C%20user%20management%20screen%2C%20professional%20transportation%20interface%20with%20blue%20theme&width=600&height=400&seq=7&orientation=landscape" alt="Rail Pass Management System" class="w-full h-1/2 object-cover object-top">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-primary">Rail Pass Management System</h3>
+              <p class="text-slate mb-4 line-clamp-2">System for automating pass issuance, renewals, and transaction tracking for rail services.</p>
+              <div class="flex flex-wrap mb-4">
+                <span class="tech-pill">PHP</span>
+                <span class="tech-pill">Database</span>
+                <span class="tech-pill">Security</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-back">
+            <h3 class="text-xl font-bold mb-4 text-primary">Rail Pass Management System</h3>
+            <p class="text-slate mb-4">Created a Rail Pass Management System to automate pass issuance, renewals, and transaction tracking for daily commuters using rail services.</p>
+            <p class="text-slate mb-4">Ensures data security, provides a digital interface for users, and integrates fraud prevention measures for administrators.</p>
+            <div class="mt-auto flex space-x-4">
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-eye-line mr-2"></i> Live Demo
+              </a>
+              <a href="#" class="btn-neon !rounded-button whitespace-nowrap">
+                <i class="ri-github-line mr-2"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education Timeline -->
+<section id="education" class="py-20 bg-dark-navy">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-16 neon-glow">Education & Certifications</h2>
+    <div class="relative max-w-3xl mx-auto">
+      <div class="timeline-line"></div>
+      <!-- Education 1 -->
+      <div class="relative">
+        <div class="timeline-node"></div>
+        <div class="timeline-content">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <div class="flex items-center mb-2 md:mb-0">
+              <div class="w-12 h-12 mr-4 flex items-center justify-center bg-light-navy rounded-full floating">
+                <i class="ri-building-4-line ri-lg text-primary"></i>
+              </div>
+              <h3 class="text-xl font-bold text-lightest-slate">SREYAS INSTITUTE OF ENGINEERING AND TECHNOLOGY (JNTUH), HYDERABAD</h3>
+            </div>
+            <span class="text-primary">2021 - 2025</span>
+          </div>
+          <h4 class="text-lg font-medium mb-2">B.Tech in CSE - AIML</h4>
+          <p class="text-slate mb-4"></p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>Specialized in Artificial Intelligence and Machine Learning</span>
+            </div>
+            <div class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>Done publication in IEEE conference</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Education 2 -->
+      <div class="relative">
+        <div class="timeline-node"></div>
+        <div class="timeline-content">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <div class="flex items-center mb-2 md:mb-0">
+              <div class="w-12 h-12 mr-4 flex items-center justify-center bg-light-navy rounded-full floating">
+                <i class="ri-book-open-line ri-lg text-primary"></i>
+              </div>
+              <h3 class="text-xl font-bold text-lightest-slate">Coder Certified - Data Structures and Algorithms</h3>
+            </div>
+            <span class="text-primary">2024</span>
+          </div>
+          <h4 class="text-lg font-medium mb-2">Smart Interviews Certification</h4>
+          <p class="text-slate mb-4">Certified in Data Structures and Algorithms</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>Advanced problem-solving techniques</span>
+            </div>
+            <div class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>Algorithm optimization and analysis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Education 3 -->
+      <div class="relative">
+        <div class="timeline-node"></div>
+        <div class="timeline-content">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <div class="flex items-center mb-2 md:mb-0">
+              <div class="w-12 h-12 mr-4 flex items-center justify-center bg-light-navy rounded-full floating">
+                <i class="ri-cpu-line ri-lg text-primary"></i>
+              </div>
+              <h3 class="text-xl font-bold text-lightest-slate">AI on Jetson Nano - nVIDIA</h3>
+            </div>
+            <span class="text-primary">2024</span>
+          </div>
+          <h4 class="text-lg font-medium mb-2">Proficiency in AI and Embedded Systems</h4>
+          <p class="text-slate mb-4">nVIDIA Certification</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>AI implementation on embedded systems</span>
+            </div>
+            <div class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>Real-time AI processing and optimization</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Education 4 -->
+      <div class="relative">
+        <div class="timeline-node"></div>
+        <div class="timeline-content">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <div class="flex items-center mb-2 md:mb-0">
+              <div class="w-12 h-12 mr-4 flex items-center justify-center bg-light-navy rounded-full floating">
+                <i class="ri-apple-line ri-lg text-primary"></i>
+              </div>
+              <h3 class="text-xl font-bold text-lightest-slate">iOS Development - Geeks for Geeks</h3>
+            </div>
+            <span class="text-primary">2024</span>
+          </div>
+          <h4 class="text-lg font-medium mb-2">iOS Development Certification</h4>
+          <p class="text-slate mb-4">Completed iOS Development, mastering Swift</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>Swift programming and iOS architecture</span>
+            </div>
+            <div class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>UI/UX design for iOS applications</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-navy">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-16 neon-glow">Get In Touch</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-2xl font-semibold mb-6 text-lightest-slate">Contact Information</h3>
+        <div class="flex flex-col space-y-6 mb-8">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 flex items-center justify-center text-primary bg-light-navy rounded-full">
+              <i class="ri-mail-line ri-lg"></i>
+            </div>
+            <div>
+              <h4 class="text-lg font-medium">Email</h4>
+              <p class="text-slate">ksaimouli2429@gmail.com</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 flex items-center justify-center text-primary bg-light-navy rounded-full">
+              <i class="ri-phone-line ri-lg"></i>
+            </div>
+            <div>
+              <h4 class="text-lg font-medium">Phone</h4>
+              <p class="text-slate">+91 9063802429</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 flex items-center justify-center text-primary bg-light-navy rounded-full">
+              <i class="ri-map-pin-line ri-lg"></i>
+            </div>
+            <div>
+              <h4 class="text-lg font-medium">Location</h4>
+              <p class="text-slate">Hyderabad, India</p>
+            </div>
+          </div>
+        </div>
+        <h3 class="text-2xl font-semibold mb-6 text-lightest-slate">Connect With Me</h3>
+        <div class="flex space-x-4">
+          <a href="https://www.linkedin.com/in/ksm2429" data-readdy="true" class="w-12 h-12 flex items-center justify-center text-primary bg-light-navy rounded-full transition-transform duration-300 hover:scale-110">
+            <i class="ri-linkedin-fill ri-lg"></i>
+          </a>
+          <a href="https://www.github.com/ksm2429" data-readdy="true" class="w-12 h-12 flex items-center justify-center text-primary bg-light-navy rounded-full transition-transform duration-300 hover:scale-110">
+            <i class="ri-github-fill ri-lg"></i>
+          </a>
+          <a href="#" class="w-12 h-12 flex items-center justify-center text-primary bg-light-navy rounded-full transition-transform duration-300 hover:scale-110">
+            <i class="ri-twitter-fill ri-lg"></i>
+          </a>
+          <a href="" data-readdy="true" class="w-12 h-12 flex items-center justify-center text-primary bg-light-navy rounded-full transition-transform duration-300 hover:scale-110">
+            <i class="ri-instagram-fill ri-lg"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-6 text-lightest-slate">Send Me a Message</h3>
+        <form>
+          <div class="form-group">
+            <label class="form-label" for="name">Your Name</label>
+            <input type="text" id="name" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Your Email</label>
+            <input type="email" id="email" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input type="text" id="subject" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Your Message</label>
+            <textarea id="message" rows="5" class="form-input"></textarea>
+          </div>
+          <button type="submit" class="btn-neon !rounded-button whitespace-nowrap py-3 px-6 w-full">
+            <i class="ri-send-plane-line mr-2"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-8 bg-dark-navy border-t border-light-navy">
+  <div class="container mx-auto px-6 text-center">
+    <p class="text-slate">© 2025 Korla Saimouli. All rights reserved.</p>
+    <p class="text-slate mt-2">Last updated: April 12, 2025</p>
+  </div>
+</footer>
+
+<div class="scroll-to-top" id="scroll-top">
+  <i class="ri-arrow-up-line ri-lg"></i>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Eye tracking and 3D head movement
+  const pupils = document.querySelectorAll('.pupil');
+  const people = document.querySelectorAll('.person');
+  const codeContainer = document.getElementById('code-bg');
+
+  document.addEventListener('mousemove', (e) => {
+    const { clientX: x, clientY: y } = e;
+
+    pupils.forEach(pupil => {
+      const rect = pupil.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const angle = Math.atan2(y - centerY, x - centerX);
+      const radius = 10;
+      const moveX = Math.cos(angle) * radius;
+      const moveY = Math.sin(angle) * radius;
+      pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+
+    people.forEach(person => {
+      const rect = person.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const rotateX = (y - centerY) / 30;
+      const rotateY = (x - centerX) / 30;
+      person.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+  });
+
+  // Floating code syntax logic
+  const codeSnippets = [
+    "const app = express();",
+    "function helloWorld() { return '👋'; }",
+    "let x = Math.random();",
+    "for (let i = 0; i < 10; i++) {}",
+    "if (user.isLoggedIn) { showDashboard(); }",
+    "import React from 'react';",
+    "def greet(): print('Hello')",
+    "const [state, setState] = useState();",
+    "fetch('/api/data').then(res => res.json())",
+    "console.log('Welcome Dev!')"
+  ];
+
+  for (let i = 0; i < 50; i++) {
+    const div = document.createElement('div');
+    div.className = 'code-line';
+    div.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+    div.style.left = `${Math.random() * 100}%`;
+    div.style.top = `${Math.random() * 100}vh`;
+    div.style.fontSize = `${12 + Math.random() * 6}px`;
+    div.style.opacity = `${0.05 + Math.random() * 0.5}`;
+    div.style.animationDuration = `${10 + Math.random() * 20}s`;
+    codeContainer.appendChild(div);
+  }
+
+  // Typing animation
+  const roles = [
+    'Full Stack Developer',
+    'AI Enthusiast',
+    'Machine Learning Engineer',
+    'Problem Solver'
+  ];
+  const typingText = document.querySelector('.typing-text');
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  function type() {
+    const currentRole = roles[roleIndex];
+    if (isDeleting) {
+      typingText.textContent = currentRole.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typingText.textContent = currentRole.substring(0, charIndex + 1);
+      charIndex++;
+    }
+    if (!isDeleting && charIndex === currentRole.length) {
+      isDeleting = true;
+      setTimeout(type, 2000);
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      setTimeout(type, 500);
+    } else {
+      setTimeout(type, isDeleting ? 50 : 100);
+    }
+  }
+  type();
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle.addEventListener('click', function() {
+    mobileMenu.classList.toggle('hidden');
+    if (mobileMenu.classList.contains('hidden')) {
+      menuToggle.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+    } else {
+      menuToggle.innerHTML = '<i class="ri-close-line ri-lg"></i>';
+    }
+  });
+
+  // Scroll progress bar
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    progressBar.style.width = scrollPercent + '%';
+  });
+
+  // Navbar background change on scroll
+  const navbar = document.querySelector('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('bg-navy');
+      navbar.classList.remove('glassmorphism');
+    } else {
+      navbar.classList.remove('bg-navy');
+      navbar.classList.add('glassmorphism');
+    }
+  });
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 70,
+          behavior: 'smooth'
+        });
+        // Close mobile menu if open
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          menuToggle.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+        }
+      }
+    });
+  });
+
+  // Animate skill bars on scroll
+  const skillBars = document.querySelectorAll('.skill-progress');
+  const skillSection = document.getElementById('skills');
+  function animateSkillBars() {
+    const sectionTop = skillSection.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if (sectionTop < windowHeight * 0.75) {
+      skillBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+          bar.style.width = width;
+        }, 100);
+      });
+      window.removeEventListener('scroll', animateSkillBars);
+    }
+  }
+  window.addEventListener('scroll', animateSkillBars);
+
+  // Custom cursor
+  const cursorFollower = document.querySelector('.cursor-follower');
+  const cursorDot = document.querySelector('.cursor-dot');
+  document.addEventListener('mousemove', function(e) {
+    cursorFollower.style.display = 'block';
+    cursorDot.style.display = 'block';
+    cursorFollower.style.left = e.clientX + 'px';
+    cursorFollower.style.top = e.clientY + 'px';
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mouseout', function() {
+    cursorFollower.style.display = 'none';
+    cursorDot.style.display = 'none';
+  });
+
+  // Hover effects for links and buttons
+  const interactiveElements = document.querySelectorAll('a, button, .card-flip');
+  interactiveElements.forEach(element => {
+    element.addEventListener('mouseenter', function() {
+      cursorFollower.style.width = '60px';
+      cursorFollower.style.height = '60px';
+      cursorFollower.style.backgroundColor = 'rgba(100, 255, 218, 0.1)';
+    });
+    element.addEventListener('mouseleave', function() {
+      cursorFollower.style.width = '40px';
+      cursorFollower.style.height = '40px';
+      cursorFollower.style.backgroundColor = 'rgba(100, 255, 218, 0.2)';
+    });
+  });
+
+  // Scroll to top button
+  const scrollTopBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 500) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+  scrollTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+</body>
+</html>
